@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quantum Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+        
+        /* Quantum Navbar */
+        .navbar {
+            background-color: rgba(18, 18, 18, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 3rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            gap: 15px;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .navbar ul li {
+            display: inline;
+        }
+        
+        .navbar ul li a {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(90deg, #ff9900, #ff0055);
+            color: white;
+            font-weight: bold;
+            text-decoration: none;
+            box-shadow: 0 0 12px #ff0055aa;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+        
+        .navbar ul li a:hover {
+            background: linear-gradient(90deg, #ff0055, #ff9900);
+            box-shadow: 0 0 20px #ff9900bb;
+            transform: scale(1.05);
+        }
+        
+        /* Main content area */
+        .main-content {
+            padding: 10rem 1rem 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 95%;
+        }
+        
+        /* Quantum Headings */
+        .my-heading {
+            font-size: 2.8rem;
+            margin-bottom: 3rem;
+            background: linear-gradient(45deg, #ff8a00, #e52e71);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        /* Quantum Boxes */
+        .rectangular-box {
+            background: rgba(30, 30, 30, 0.7);
+            border-radius: 15px;
+            padding: 2.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .rectangular-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #ff8a00, #e52e71);
+        }
+        
+        .rectangular-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255, 138, 0, 0.1);
+        }
+        
+        .text-content {
+            flex: 1;
+            max-width: 50%;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+        
+        .image-content {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+        }
+        
+        .image-content img {
+            width: 300px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+        
+        /* Quantum Cards */
+        .my-row {
+            display: flex;
+            gap: 2.5rem;
+            justify-content: center;
+            margin-top: 2rem;
+            width: 100%;
+            flex-wrap: wrap;
+        }
+        
+        .my-col {
+            flex: 1;
+            min-width: 300px;
+            max-width: 400px;
+        }
+        
+        .my-card {
+            background: rgba(30, 30, 30, 0.7);
+            border-radius: 15px;
+            padding: 2.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            min-height: 350px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .my-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #ff8a00, #e52e71);
+        }
+        
+        .my-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(255, 138, 0, 0.15);
+        }
+        
+        .my-card b {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            display: block;
+            background: linear-gradient(45deg, #ff8a00, #e52e71);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .my-card p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+        
+        /* Quantum Divider */
+        .divider {
+            margin: 4rem auto;
+            width: 80%;
+            height: 1px;
+            background: linear-gradient(90deg, 
+                          transparent, 
+                          rgba(255, 138, 0, 0.5), 
+                          rgba(226, 46, 113, 0.5), 
+                          transparent);
+            border: none;
+            opacity: 0.7;
+        }
+        
+        /* Technical Skills Section */
+        .technical-skills {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 50px 20px;
+        }
+        
+        .skill-cards-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .skill-card {
+            background: rgba(30, 30, 30, 0.7);
+            border-radius: 15px;
+            padding: 2rem;
+            width: 220px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #ff8a00, #e52e71);
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(255, 138, 0, 0.15);
+        }
+        
+        .skill-card img {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 1.5rem;
+            object-fit: contain;
+        }
+        
+        .skill-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ff8a00, #e52e71);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .skill-card p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        
+        .read-more-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(90deg, #ff9900, #ff0055);
+            color: white;
+            font-weight: bold;
+            text-decoration: none;
+            box-shadow: 0 0 12px #ff0055aa;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        
+        .read-more-btn:hover {
+            background: linear-gradient(90deg, #ff0055, #ff9900);
+            box-shadow: 0 0 20px #ff9900bb;
+            transform: scale(1.05);
+        }
+        
+        /* Video Editing Section */
+        .video-editing {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 50px 20px;
+        }
+        
+        .video-editing h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: rgba(255, 255, 255, 0.8);
+            text-align: center;
+            font-style: italic;
+        }
+        
+        .image-text-box {
+            background: rgba(30, 30, 30, 0.7);
+            border-radius: 15px;
+            padding: 2.5rem;
+            width: 90%;
+            max-width: 1000px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 2rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+        
+        .image-text-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #ff8a00, #e52e71);
+        }
+        
+        .image-text-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            perspective: 1000px;
+        }
+        
+        .flip-card {
+            width: 120px;
+            height: 120px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+        }
+        
+        .flip-card:hover {
+            transform: rotateY(180deg);
+        }
+        
+        .flip-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+            position: absolute;
+            backface-visibility: hidden;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .flip-card .back {
+            transform: rotateY(180deg);
+        }
+        
+        .image-text-item p {
+            flex: 1;
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+        }
+        
+        .video-editing-footer,
+        .to-be-continued-editing-footer {
+            width: 90%;
+            max-width: 1000px;
+            margin: 2rem auto 0;
+            text-align: left;
+        }
+        
+        .video-editing-footer h3,
+        .to-be-continued-editing-footer h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ff8a00, #e52e71);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .empty-boxes-container {
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .empty-box {
+            background: rgba(30, 30, 30, 0.7);
+            border-radius: 15px;
+            width: 100%;
+            max-width: 500px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .empty-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #ff8a00, #e52e71);
+        }
+        
+        .empty-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(255, 138, 0, 0.15);
+        }
+        
+        .empty-box img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+        
+        .empty-box p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        
+        .empty-box h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ff8a00, #e52e71);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .my-heading {
+                font-size: 2.4rem;
+            }
+            
+            .rectangular-box {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .text-content, .image-content {
+                max-width: 100%;
+            }
+            
+            .image-content {
+                justify-content: center;
+                margin-top: 2rem;
+            }
+            
+            .divider {
+                width: 90%;
+            }
+            
+            .image-text-box {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1.2rem;
+                flex-direction: column;
+                height: auto;
+            }
+            
+            .navbar ul {
+                flex-direction: column;
+                gap: 10px;
+                width: 100%;
+            }
+            
+            .navbar ul li {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .main-content {
+                padding: 12rem 1rem 4rem;
+            }
+            
+            .my-heading {
+                font-size: 2rem;
+            }
+            
+            .my-card, .skill-card, .empty-box {
+                padding: 1.8rem;
+            }
+            
+            .divider {
+                width: 100%;
+                margin: 3rem auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <ul>
+            <li><a href="trialsport.html" target="_blank">Home</a></li>
+            <li><a href="technicalskills.html" target="_blank">Portfolio</a></li>
+            <li><a href="sports.html" target="_blank">Sports Career</a></li>
+            <li><a href="achievements.html" target="_blank">Achievements</a></li>
+            <li><a href="contact.html" target="_blank">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="main-content">
+        <section class="portfolio">
+            <div class="portfolio-heading">
+                <h1 class="my-heading text-center" id="typing-heading"></h1>
+            </div>
+            <div class="rectangular-box">
+                <div class="text-content">
+                    <p>I am pursuing a 4-year B.Tech in Artificial Intelligence and Machine
+                         Learning at MIT Academy of Engineering (MITAOE), where I explore 
+                         cutting-edge advancements in AI, data science, and machine learning.
+                          This journey has strengthened my foundation in mathematics, programming,
+                           and problem-solving, enabling me to develop innovative AI solutions.
+                        Before stepping into AI, I built a strong academic base at R.R. Vidyalaya
+                         and honed my analytical skills during my 11th and 12th at M.J. College,
+                          where I developed a keen interest in emerging technologies.</p>
+                </div>
+                <div class="image-content">
+                    <img src="https://images.pexels.com/photos/159740/library-la-trobe-study-students-159740.jpeg?cs=srgb&dl=pexels-pixabay-159740.jpg&fm=jpg" alt="My Portfolio Image">
+                </div>
+            </div>
+        </section>
+
+        <hr class="divider">
+
+        <section class="services-content"> 
+            <div class="my-row">
+                <div class="my-col">
+                    <div class="my-card">
+                        <b>Academic performance in 10th</b>
+                        <p>I achieved an outstanding 92% in my 10th-grade board exams,
+                             securing 3rd rank in my school. This accomplishment was
+                              a result of my dedication, perseverance, and passion for
+                               learning. In recognition of my academic excellence, I was
+                                honored by the Principal, which further motivated me to
+                                strive for success in every endeavor. This milestone reflects
+                                 my ability to balance hard work and discipline—qualities
+                                  that continue to shape my journey.</p>
+                    </div>
+                </div>
+                <div class="my-col">
+                    <div class="my-card">
+                        <b>Academic comeback in 12th</b>
+                        <p>"I made a remarkable academic comeback in my 12th-grade board exams
+                            , scoring an impressive 89.33% despite securing only 70% in 11th grade.
+                             Through sheer determination, relentless effort, and strategic learning,
+                              I not only improved significantly but also secured 2nd rank in my entire
+                               college. This achievement was a testament to my resilience and adaptability.
+                                In recognition of my outstanding performance, I was honored by the Principal,
+                                 further fueling my passion for excellence. This experience strengthened my
+                                  belief that setbacks are just setups for greater comebacks."</p>
+                    </div>
+                </div>
+                <div class="my-col">
+                    <div class="my-card">
+                        <b>In the college..</b>
+                        <p>"Despite facing some of the most challenging subjects in my first semester
+                             of college, I persevered with dedication and strategic learning, ultimately
+                              securing an impressive 8.95 GPA. This accomplishment is a testament to
+                               my resilience, problem-solving abilities, and willingness to push my
+                                limits. The journey was demanding, but through consistent effort
+                                 and an adaptive mindset, I transformed obstacles into stepping
+                                  stones for success. This milestone reinforces my belief that with
+                                  the right mindset and persistence, any academic challenge can be conquered."</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="divider">
+
+        <section class="technical-skills">
+            <h1 class="my-heading text-center" id="typing-skills-heading"></h1>
+            <div class="skill-cards-container">
+                <div class="skill-card">
+                    <img src="https://cdn-icons-png.flaticon.com/512/919/919827.png" alt="HTML Icon">
+                    <h3>HTML</h3>
+                    <p>Experienced in structuring web pages with semantic HTML.</p>
+                    <button class="read-more-btn">Read More</button>
+                </div>
+                <div class="skill-card">
+                    <img src="https://cdn-icons-png.flaticon.com/512/919/919826.png" alt="CSS Icon">
+                    <h3>CSS</h3>
+                    <p>Skilled in animations, Flexbox, Grid, and responsive design.</p>
+                    <button class="read-more-btn">Read More</button>
+                </div>
+                <div class="skill-card">
+                    <img src="https://cdn-icons-png.flaticon.com/512/2772/2772128.png" alt="SQL Icon">
+                    <h3>SQL</h3>
+                    <p>Proficient in database management and query optimization.</p>
+                    <button class="read-more-btn">Read More</button>
+                </div>
+                <div class="skill-card">
+                    <img src="https://cdn-icons-png.flaticon.com/512/3665/3665923.png" alt="C Icon">
+                    <h3>C</h3>
+                    <p>Strong foundation in procedural programming and system-level development.</p>
+                    <button class="read-more-btn">Read More</button>
+                </div>
+                <div class="skill-card">
+                    <img src="https://cdn-icons-png.flaticon.com/512/5968/5968350.png" alt="Python Icon">
+                    <h3>Python</h3>
+                    <p>Proficient in AI, machine learning, and data analysis.</p>
+                    <button class="read-more-btn">Read More</button>
+                </div>
+            </div>
+        </section>
+
+        <hr class="divider">
+
+        <section class="video-editing">
+            <h1 class="my-heading text-center" id="typing-video-editing-heading"></h1>
+            <h4> "Every cut tells a story, every transition adds emotion—editing that hits differently."</h4>
+            <h4> "Dive with me in the world of animation."</h4>
+            
+            <div class="image-text-box">
+                <div class="image-text-item">
+                    <div class="flip-card">
+                        <img src="https://images.unsplash.com/photo-1574717025058-2f8737d2e2b7?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dmlkZW8lMjBlZGl0aW5nfGVufDB8fDB8fHww" alt="Video Editing Image 1" class="front">
+                        <img src="https://images.unsplash.com/photo-1490810194309-344b3661ba39?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8dmlkZW8lMjBlZGl0aW5nfGVufDB8fDB8fHww" alt="Back Image 1" class="back">
+                    </div>
+                    <p>"A Hobby That Became Art 🖌️🎬"
+                        I picked up video editing in 9th grade for fun—now, it's a skill
+                         I use to create mesmerizing visuals on diverse platforms. 🎥🔥
+                        </p>
+                </div>
+                <div class="image-text-item">
+                    <div class="flip-card">
+                        <img src="https://img.freepik.com/premium-photo/neon-glowing-adobe-premiere-pro-logo-image-black-background_181020-4653.jpg" alt="Video Editing Image 2" class="front">
+                        <img src="https://c0.wallpaperflare.com/preview/351/878/368/united-kingdom-london-video-edit.jpg" alt="Back Image 2" class="back">
+                    </div>
+                    <p>Mastering Adobe Premiere Pro 🎬✨
+                        Expert in high-end editing, cinematic grading,
+                         seamless transitions, and pro audio mastering—crafting
+                          stunning visuals with precision. 🚀🔥
+                        </p>
+                </div>
+                <div class="image-text-item">
+                    <div class="flip-card">
+                        <img src="https://www.cined.com/content/uploads/2020/06/Resolve-16_featured.jpg" alt="Video Editing Image 3" class="front">
+                        <img src="https://images.blackmagicdesign.com/images/products/davinciresolve/studio/hero/hero-lg.jpg?_v=1603923501" alt="Back Image 3" class="back">
+                    </div>
+                    <p>DaVinci Resolve Expertise 🎬✨
+                        Specialized in color grading, advanced editing, cinematic looks,
+                         and pro-level post-production, delivering visually stunning results. 🚀🔥</p>
+                </div>
+                <div class="image-text-item">
+                    <div class="flip-card">
+                        <img src="https://www.downloadpirate.com/wp-content/uploads/2021/06/final-cut-pro-10.5.jpg" alt="Video Editing Image 4" class="front">
+                        <img src="https://images.pexels.com/photos/11025649/pexels-photo-11025649.jpeg?cs=srgb&dl=pexels-amar-11025649.jpg&fm=jpg" alt="Back Image 4" class="back">
+                    </div>
+                    <p>"Precision Editing, Cinematic Excellence" 🎬✨
+                        Elevating storytelling with seamless cuts, fluid motion graphics,
+                         and stunning color grading—crafted for perfection.</p>
+                </div>
+            </div>
+            
+            <div class="video-editing-footer">
+               <h3> Bringing Stories to Life:</h3>
+               <h3>My Video Editing Creations</h3>
+            </div>
+            
+            <div class="empty-boxes-container">
+                <div class="empty-box">
+                    <img src="https://c0.wallpaperflare.com/preview/718/665/272/people-man-laptop-mac.jpg" alt="Gaming Setup">
+                    <p>I specialize in editing high-quality gaming content using AI-driven techniques and top-tier software:</p>
+                    <h3>Adobe Premiere Pro | DaVinci Resolve | Final Cut Pro | Clipchamp</h3>
+                    <p>1.Editing isn't just a skill—it's warfare. Every frame is a battlefield, and I dominate with AI precision.</p>
+                    <p>2.Gaming content—sharp, dynamic, unstoppable.</p>
+                    <p>3.AI-powered effects, automation, and enhanced visuals</p>
+                    <p>4.Engaging, high-impact gaming edits</p>
+                    <p>5.Glitches, slow-mo kills, cinematic montages—I craft them all with lethal precision.</P>
+                </div>
+                <div class="empty-box">
+                    <img src="images/image/youtube.png" alt="Gaming Setup">
+                    <h3>Tactical Terror | The Battlefield Awaits</h3>
+                    <p>1.I run Tactical Terror, a YouTube channel dedicated to intense Call of Duty: Warzone gameplay. Each video is a cinematic fusion of strategy, chaos, and AI-enhanced editing.</p>
+                    <p>2.Precision kills. Tactical plays. Unfiltered action.</p>
+                    <p>3.Edited with Premiere Pro | DaVinci Resolve | Final Cut Pro</p>
+                    <p>4.On pause, but not out. Storage issues may have slowed the uploads, but the warzone never forgets. A comeback is inevitable.</p>
+                </div>
+            </div>
+            
+            <div class="to-be-continued-editing-footer">
+                <h3> to be continue.......</h3>
+                <h1>Stay Hard buddy.......💀💀</h1>
+             </div>
+        </section>
+    </div>
+
+    <script>
+        function typeWriterEffect(element, text, speed = 100, delay = 1000) {
+            let i = 0;
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                } else {
+                    setTimeout(() => {
+                        element.innerHTML = "";
+                        i = 0;
+                        type();
+                    }, delay);
+                }
+            }
+            type();
+        }
+
+        const heading = document.getElementById("typing-heading");
+        const skillsHeading = document.getElementById("typing-skills-heading");
+        const videoEditingHeading = document.getElementById("typing-video-editing-heading");
+
+        typeWriterEffect(heading, "My Portfolio", 100, 2000);
+        typeWriterEffect(skillsHeading, "Technical Skills", 100, 2000);
+        typeWriterEffect(videoEditingHeading, "Video Editing", 100, 2000);
+    </script>
+</body>
+</html>

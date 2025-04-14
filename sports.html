@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Correct Font Awesome CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js" crossorigin="anonymous"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sports Career</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: 
+                linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)), 
+                url('https://images.unsplash.com/photo-1579952363873-27f3bade9f55');
+            background-size: cover;
+            background-position: center;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        /* Quantum-inspired Navbar */
+        .navbar {
+            background-color: rgba(18, 18, 18, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 3rem;
+            display: flex;
+            justify-content: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar ul li {
+            display: inline;
+        }
+
+        .navbar ul li a {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(90deg, #ff9900, #ff0055);
+            color: white;
+            font-weight: bold;
+            text-decoration: none;
+            box-shadow: 0 0 12px #ff0055aa;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .navbar ul li a:hover {
+            background: linear-gradient(90deg, #ff0055, #ff9900);
+            box-shadow: 0 0 20px #ff9900bb;
+            transform: scale(1.05);
+        }
+
+        /* Main content area */
+        .sports-career {
+            padding: 10rem 1rem 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 95%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Quantum gradient heading */
+        .sports-career-heading {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 2rem;
+            background: linear-gradient(45deg, #ff8a00, #e52e71);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .sports-career-heading i {
+            animation: glow 1.5s infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+            }
+            to {
+                text-shadow: 0 0 15px rgba(255, 215, 0, 1);
+            }
+        }
+
+        .sports-career-text {
+            font-size: 1.2rem;
+            text-align: center;
+            margin: 20px 0;
+            max-width: 800px;
+            width: 100%;
+            padding: 0 20px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Quantum glowing boxes container */
+        .glowing-boxes-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            margin-top: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 30px rgba(255, 138, 0, 0.1);
+            background: rgba(30, 30, 30, 0.7);
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        .glowing-box-row {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            width: 100%;
+        }
+
+        /* Quantum achievement boxes */
+        .glowing-box {
+            background: rgba(30, 30, 30, 0.7);
+            border-radius: 15px;
+            padding: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .glowing-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #ff8a00, #e52e71);
+        }
+
+        .glowing-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(255, 138, 0, 0.2);
+        }
+
+        .glowing-box p {
+            font-size: 16px;
+            color: white;
+            margin: 0;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+            position: relative;
+            z-index: 1;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        /* Quantum divider */
+        .custom-line {
+            width: 80%;
+            height: 2px;
+            background: linear-gradient(90deg, 
+                          transparent, 
+                          rgba(255, 138, 0, 0.5), 
+                          rgba(226, 46, 113, 0.5), 
+                          transparent);
+            margin: 40px auto;
+            border: none;
+        }
+
+        /* Glowing text with quantum gradient */
+        .glowing-text {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin: 20px auto;
+            background: linear-gradient(45deg, #ff8a00, #e52e71);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            animation: glow-text 2s infinite alternate;
+        }
+
+        @keyframes glow-text {
+            from {
+                text-shadow: 0 0 10px rgba(255, 138, 0, 0.5);
+            }
+            to {
+                text-shadow: 0 0 20px rgba(226, 46, 113, 0.7);
+            }
+        }
+
+        /* Quantum content box */
+        .glowing-content-box {
+            background: rgba(30, 30, 30, 0.7);
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 1000px;
+            width: 100%;
+            margin: 20px auto;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 20px rgba(255, 138, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glowing-content-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #ff8a00, #e52e71);
+        }
+
+        .glowing-content-box:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 30px rgba(255, 138, 0, 0.2);
+        }
+
+        .glowing-content-box p {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        /* Image container with quantum effects */
+        .image-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .hover-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            object-fit: cover;
+            border: 2px solid rgba(255, 138, 0, 0.3);
+        }
+
+        .hover-image:hover {
+            transform: scale(1.5) rotate(5deg);
+            box-shadow: 0 0 20px rgba(255, 138, 0, 0.5);
+            border-color: rgba(255, 138, 0, 0.7);
+            z-index: 100;
+        }
+
+        /* Custom text boxes with quantum styling */
+        .custom-text-boxes {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .custom-text-box {
+            background: rgba(30, 30, 30, 0.7);
+            border-radius: 15px;
+            padding: 25px;
+            width: 100%;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 15px rgba(255, 138, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+
+        .custom-text-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #ff8a00, #e52e71);
+        }
+
+        .custom-text-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255, 138, 0, 0.2);
+        }
+
+        .custom-text-box p {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.7;
+        }
+
+        /* Vertical glowing boxes */
+        .vertical-glowing-boxes {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px;
+            margin: 40px 0;
+            width: 100%;
+        }
+
+        .vertical-glowing-box {
+            background: rgba(30, 30, 30, 0.7);
+            border-radius: 15px;
+            padding: 25px;
+            width: 100%;
+            max-width: 800px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 20px rgba(255, 138, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+
+        .vertical-glowing-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #ff8a00, #e52e71);
+        }
+
+        .vertical-glowing-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255, 138, 0, 0.2);
+        }
+
+        .box-content {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .vertical-glowing-box img {
+            width: 175px;
+            height: 200px;
+            border-radius: 10px;
+            object-fit: cover;
+            border: 2px solid rgba(255, 138, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .vertical-glowing-box:hover img {
+            border-color: rgba(255, 138, 0, 0.7);
+            box-shadow: 0 0 15px rgba(255, 138, 0, 0.3);
+        }
+
+        .box-text {
+            flex: 1;
+        }
+
+        .box-text p {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.7;
+        }
+
+        .box-text h5 {
+            color: rgba(255, 255, 255, 0.9);
+            margin: 10px 0;
+            font-size: 0.9rem;
+        }
+
+        /* Fullscreen overlay - Updated */
+        .fullscreen-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            padding: 20px;
+        }
+
+        .fullscreen-overlay-content {
+            max-width: 90%;
+            max-height: 90%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .fullscreen-overlay img {
+            max-width: 100%;
+            max-height: 80vh;
+            border-radius: 10px;
+            border: 2px solid rgba(255, 138, 0, 0.7);
+            box-shadow: 0 0 30px rgba(255, 138, 0, 0.5);
+            object-fit: contain;
+        }
+
+        .close-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: linear-gradient(90deg, #ff8a00, #e52e71);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .close-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(255, 138, 0, 0.5);
+        }
+
+        /* Responsive design */
+        @media (max-width: 1200px) {
+            .sports-career-heading {
+                font-size: 2.5rem;
+            }
+            
+            .glowing-box-row {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .glowing-box {
+                width: 100%;
+                max-width: 500px;
+            }
+            
+            .box-content {
+                flex-direction: column;
+            }
+            
+            .vertical-glowing-box img {
+                width: 100%;
+                height: auto;
+                max-height: 300px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem;
+            }
+            
+            .navbar ul {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .sports-career {
+                padding: 8rem 1rem 2rem;
+            }
+            
+            .sports-career-heading {
+                font-size: 2rem;
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .glowing-content-box, 
+            .custom-text-box,
+            .vertical-glowing-box {
+                padding: 20px;
+            }
+            
+            .hover-image {
+                width: 80px;
+                height: 80px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Quantum-styled Navbar -->
+    <div class="navbar">
+        <ul>
+            <li><a href="trialsport.html" target="_blank">Home</a></li>
+            <li><a href="technicalskills.html" target="_blank">Portfolio</a></li>
+            <li><a href="sports.html" target="_blank">Sports Carrier</a></li>
+            <li><a href="achievements.html" target="_blank">Achievements</a></li>
+            <li><a href="contact.html" target="_blank">Contact</a></li>
+        </ul>
+    </div>
+
+    <!-- Sports Career Content -->
+    <section class="sports-career">
+        <h1 class="sports-career-heading">
+            <i class="fa-solid fa-person-running"></i> Sports Career <i class="fa-solid fa-trophy"></i>
+        </h1>
+
+        <!-- Text Section -->
+        <div class="sports-career-text">
+            <p>IF you are athlete and have played any professional sports then just read the below boxes.....</p>
+        </div>
+
+        <!-- Quantum Glowing Boxes -->
+        <div class="glowing-boxes-container">
+            <!-- First Row: 3 Boxes -->
+            <div class="glowing-box-row">
+                <div class="glowing-box" style="background-image: url('https://media.istockphoto.com/id/177427917/photo/close-up-of-red-cricket-ball-and-bat-sitting-on-grass.jpg?s=612x612&w=0&k=20&c=DcorerbBUeDNTfld3OclgHxCty4jih2yDCzipffX6zw=');">
+                    <p>Mental Toughness – You don't just play to win; you play to dominate. Every loss is a lesson, every setback a comeback.</p>
+                </div>
+                <div class="glowing-box" style="background-image: url('https://c4.wallpaperflare.com/wallpaper/448/555/577/wallpaper-for-football-lovers-wallpaper-preview.jpg');">
+                    <p>Leadership & Teamwork – Whether leading from the front or backing your squad, sports forge warriors, not just players.</p>
+                </div>
+                <div class="glowing-box" style="background-image: url('https://images5.alphacoders.com/875/875704.jpg');">
+                    <p>Handling Pressure – Big moments separate the legends from the rest. Sports condition you to thrive under pressure, not crumble.</p>
+                </div>
+            </div>
+
+            <!-- Second Row: 2 Boxes -->
+            <div class="glowing-box-row">
+                <div class="glowing-box" style="background-image: url('https://c1.wallpaperflare.com/preview/794/339/725/athlete-sport-man-person.jpg');">
+                    <p>Self-Belief & Resilience – The body breaks, the mind doubts, but true athletes keep fighting till the final whistle.</p>
+                </div>
+                <div class="glowing-box" style="background-image: url('https://c4.wallpaperflare.com/wallpaper/721/93/282/michael-phelps-swimmer-olympian-wallpaper-preview.jpg');">
+                    <p>A Way of Life – Sports aren't a hobby; they are war. Every match, every rep, every second builds a version of you that refuses to quit.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quantum Divider -->
+        <div class="custom-line"></div>
+
+        <!-- Glowing Text -->
+        <div class="glowing-text">
+            A Journey Forged in Sweat and Spirit: My Legacy in Sports
+        </div>
+
+        <!-- Quantum Content Box -->
+        <div class="glowing-content-box">
+            <!-- Images -->
+            <div class="image-container">
+                <img src="images/image/man of the match.jpg" alt="Sports Image" class="hover-image">
+                <img src="images/image/suyadhmadhur.jpg" alt="Sports Image" class="hover-image">
+                <img src="images/image/mine jersy.jpg" alt="Sports Image" class="hover-image">
+                <img src="images/image/AISSMS.jpg" alt="Sports Image" class="hover-image">
+                <img src="https://www.keralacricketassociation.com/wp-content/uploads/2025/03/Ranji-Trophy-Runnerup..jpg" alt="Sports Image" class="hover-image">
+                <img src="images/image/profteam.jpg" alt="Sports Image" class="hover-image">
+                <img src="images/image/piyush.png.jpg" alt="Sports Image" class="hover-image">
+                <img src="https://media.istockphoto.com/id/1491525671/photo/team-players-lifted-batsman-on-their-shoulder-portraying-sense-of-victory-after-winning.jpg?s=612x612&w=0&k=20&c=yLtpNvSzCphrkO9iAfii8A1zoZmt3A5KJwmumGEz9Lw=" alt="Sports Image" class="hover-image">
+                <img src="images/image/funtime.jpg" alt="Sports Image" class="hover-image">
+                <img src="https://media.istockphoto.com/id/1491525671/photo/team-players-lifted-batsman-on-their-shoulder-portraying-sense-of-victory-after-winning.jpg?s=612x612&w=0&k=20&c=yLtpNvSzCphrkO9iAfii8A1zoZmt3A5KJwmumGEz9Lw=" alt="Sports Image" class="hover-image">
+            </div>
+
+            <!-- Text -->
+            <p>
+                Sports have been an integral part of my life, shaping my character and teaching me invaluable lessons. From the thrill of victory to the lessons in defeat, every moment on the field has contributed to my growth. Here, I share my journey, achievements, and the passion that drives me to excel.
+            </p>
+
+            <!-- Custom Text Boxes -->
+            <div class="custom-text-boxes">
+                <div class="custom-text-box">
+                    <p>My cricket journey began in 6th grade as an all-rounder,
+                         playing for my school team. Passion drove me to join
+                          an academy, dedicating countless hours to the game.
+                           In 9th and 10th, I seized the captaincy, leading
+                            my team to victory in the Under-14 and Under-16
+                             finals—an unforgettable experience that shaped me
+                              as both a player and a leader.
+                    </p>
+                </div>
+                <div class="custom-text-box">
+                    <p>In 11th and 12th, cricket became more than a passion—it was
+                         a way of life. I spent half my day on the ground, pushing
+                          my limits through intense workouts, bowling, batting, and
+                           fielding drills. I was honored to be part of the Ranji
+                            selection camp, but despite my efforts, I narrowly missed
+                             selection. Undeterred, I channeled my energy into college
+                              cricket, leading my team to multiple tournament victories.
+                               Every match, every challenge, and every triumph fueled my
+                                relentless pursuit of excellence on the field.
+                    </p>
+                </div>
+                <div class="custom-text-box">
+                    <p>Currently, I am a proud member of the MITAOE
+                        cricket team, dedicating myself to relentless
+                         practice and intense workouts, striving for the
+                          next big opportunity to showcase my skills at a 
+                          higher level. I have had the privilege of playing
+                           under the captaincy of Madhur Sisodiya, experiencing
+                            a season filled with unforgettable moments—thrilling
+                             victories, tough defeats, and lessons that fuel my
+                              passion for the game. Every match adds to my journey,
+                               shaping me into a stronger, more determined player, ready
+                                to seize every chance that comes my way.
+                    </p>
+                </div>
+                <div class="custom-text-box">
+                    <p>Looking back on this incredible 8-year journey,
+                         I realize that cricket has shaped not just my
+                          game but my very identity. The resilience, discipline,
+                           and leadership I embody today were forged on the field,
+                            through every challenge and every triumph. Having played
+                             over 200 matches, I've experienced the highs of victory
+                              and the lessons of defeat, each one strengthening my character.
+                               Despite enduring more than 100 injuries, my unwavering
+                                determination to lead my team to success never wavered.
+                                 Cricket didn't just make me a better player—it made me
+                                  a leader, a fighter, and the person I am today.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quantum Divider -->
+        <div class="custom-line"></div> 
+
+        <!-- Glowing Text -->
+        <div class="glowing-text">
+            <h2>Aside from the cricketing arena</h2>
+        </div>
+
+        <!-- Vertical Glowing Boxes -->
+        <div class="vertical-glowing-boxes">
+            <!-- First Box -->
+            <div class="vertical-glowing-box">
+                <div class="box-content">
+                    <img src="images/image/swimer.jpg" alt="Swimming Image">
+                    <div class="box-text">
+                        <p>🏊 Master of the Waters: My Swimming Journey 🌊</p>
+                        <h5>Medal-Winning Champion 🏅 – Secured bronze, silver, and gold in various competitions, proving excellence in competitive swimming.</h5>
+                        <h5>Versatile & Skilled 🔥 – Proficient in all major swimming styles: Freestyle, Backstroke, Breaststroke, Butterfly, and Medley.</h5>
+                        <h5>Competitive Edge ⚡ – Years of dedication, technique, and endurance training have shaped me into a powerful and strategic swimmer.</h5>
+                        <h5>Precision & Speed ⏱️ – Perfecting my strokes to blend efficiency with raw power, making waves both in and out of the pool.</h5>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Second Box -->
+            <div class="vertical-glowing-box">
+                <div class="box-content">
+                    <img src="https://wallpaper.forfun.com/fetch/35/35aaa71193435678b2e35852433a73ad.jpeg" alt="Boxing Image">
+                    <div class="box-text">
+                        <p>🥊 Warrior's Mindset: My Journey in Combat Sports 🏆</p>
+                        <h5>Boxing Trained & Battle-Ready 💥 – Sharpened my reflexes, precision, and endurance through intense boxing training.</h5>
+                        <h5>MMA Enthusiast 🔥 – A deep passion for Mixed Martial Arts, constantly learning new techniques and strategies.</h5>
+                        <h5>Strength & Conditioning 💪 – Pushed my limits with intense gym workouts designed for agility, power, and explosive movement.</h5>
+                        <h5>Future Fighter in the Making ⚡ – Though I haven't stepped into the professional boxing ring yet, I'm always prepared to learn, evolve, and dominate if I choose to pursue it.</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fullscreen Overlay - Updated Structure -->
+        <div class="fullscreen-overlay">
+            <div class="fullscreen-overlay-content">
+                <img src="" alt="Fullscreen Image" id="fullscreen-img">
+                <button class="close-btn">Close</button>
+            </div>
+        </div>
+
+        <script>
+            // Select all images with the hover-image class
+            const images = document.querySelectorAll('.hover-image');
+            const fullscreenOverlay = document.querySelector('.fullscreen-overlay');
+            const fullscreenImg = document.getElementById('fullscreen-img');
+            const closeBtn = document.querySelector('.close-btn');
+
+            // Add event listeners to each image
+            images.forEach(image => {
+                image.addEventListener('click', () => {
+                    // Set the source of the fullscreen image
+                    fullscreenImg.src = image.src;
+                    
+                    // Show the overlay
+                    fullscreenOverlay.style.display = 'flex';
+                    
+                    // Prevent scrolling when overlay is open
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+
+            // Close the overlay when clicked
+            closeBtn.addEventListener('click', () => {
+                fullscreenOverlay.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+
+            // Also close when clicking outside the image
+            fullscreenOverlay.addEventListener('click', (e) => {
+                if (e.target === fullscreenOverlay) {
+                    fullscreenOverlay.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+
+            // Close with Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && fullscreenOverlay.style.display === 'flex') {
+                    fullscreenOverlay.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        </script>
+    </section>
+</body>
+</html>
