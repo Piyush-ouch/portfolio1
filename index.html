@@ -145,43 +145,23 @@
         }
 
         .profile-container {
-            position: relative;
-            width: 300px;
-            height: 300px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+    width: 450px;  /* Increased size */
+    height: 450px; /* Increased size */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px; /* Slightly rounded corners for the container if desired */
+    overflow: hidden; /* Ensures the image stays within the square */
+}
 
-        .glowing-ring {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            background: linear-gradient(45deg, #ff8a00, #e52e71);
-            animation: glow-ring 3s infinite alternate;
-            box-shadow: 0 0 30px rgba(255, 138, 0, 0.5);
-        }
-
-        @keyframes glow-ring {
-            from {
-                box-shadow: 0 0 20px rgba(255, 138, 0, 0.5);
-            }
-            to {
-                box-shadow: 0 0 40px rgba(226, 46, 113, 0.7);
-            }
-        }
-
-        .profile-pic {
-            width: 90%;
-            height: 90%;
-            border-radius: 50%;
-            object-fit: cover;
-            position: relative;
-            z-index: 1;
-            border: 5px solid rgba(30, 30, 30, 0.7);
-        }
-
+.profile-pic {
+    width: 100%; /* Now takes full container size */
+    height: 100%; /* Now takes full container size */
+    object-fit: cover; /* Ensures the image covers the area without distortion */
+    border: none; /* Removed border */
+    border-radius: 0; /* Square corners */
+    /* Add any other styling you want for the image */
+}
         /* Portfolio section */
         .portfolio-content {
             margin-top: 3rem;
@@ -487,7 +467,6 @@
         </div>
     
         <div class="profile-container">
-            <div class="glowing-ring"></div>
             <img src="images/image/piyushimage.jpg" alt="Profile Picture" class="profile-pic">
         </div>
     </div>
